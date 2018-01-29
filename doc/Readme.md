@@ -1,2 +1,1 @@
-This directory is for all documentation related to the project
-
+This directory will hold all the documentation I create for my project.
