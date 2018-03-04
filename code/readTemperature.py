@@ -17,7 +17,7 @@ def readTemp():
    return [currentTime, tempC, tempF]
 
 def logTemp():
-   con = mydb.connect('/home/pi/temperature.db')
+   con = mydb.connect('/home/pi/ELSpring2018/code/Database/temperature.db')
    with con:
       try:
          [t,C,F]=readTemp()
