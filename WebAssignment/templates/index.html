@@ -6,10 +6,12 @@
    </head>
 
    <body>
-		<h1> Sensor Data </h1>
+		<h1> Damian's Sensor Data </h1>
+
+
 		<h3> TEMPERATURE &nbsp; ==>   
-		({{'%0.2f'| format(tempC|float)}})</h3>
-		<h3> TEMPERATURE &nbsp; ==>  ({{'%0.2f'| format(tempF|float)}}) oF</h3>
+		{{'%0.2f'| format(tempC|float)}}&deg;C</h3>
+		<h3> TEMPERATURE &nbsp; ==>  ({{'%0.2f'| format(tempF|float)}}) &deg;F</h3>
 		<hr>
 		<h3> Last Sensors Reading: {{ time }} ==> <a href="/"class="button">REFRESH</a></h3>
 		<hr>
@@ -22,6 +24,9 @@
 		<input type="submit">
 		</form></p>
 	<hr>
+<table>
+
+</table>
 	<img src="/plot/tempC" alt="Image Placeholder" width="49%">
 	<img src="/plot/tempF" alt="Image Placeholder" width="49%">
 

@@ -157,18 +157,6 @@ def plot_tempF():
 	response = make_response(output.getvalue())
 	response.mimetype = 'image/png'
 	return response
-####
-
-@app.route('/list')
-def list():
-   con = sqlite3.connect('../code/Database/temperature.db')
-   con.row_factory = sql.Row
-   
-   cur = con.cursor()
-   cur.execute("select * from TempData")
-   
-   rows = cur.fetchall();
-   return render_template("list.html",rows = rows)
 
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port=100, debug=False)
