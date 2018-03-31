@@ -1,0 +1,13 @@
+{% extends "template.html" %}
+{% block content %}
+   <div class="jumbotron">
+  <h1 class="display-4">HT Monitor System</h1>
+  <p class="lead">The hub for tracking all temperature and humidity data in your boulding.</p>
+ <img src="{{url_for('static', filename='dht22.png')}}" class="img-rounded" style="width:50%" alt="dht22" />
+<hr class="my-4">
+  <p>Login to view personalized data.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="/log" role="button">Go to login</a>
+  </p>
+</div>
+{% endblock %}

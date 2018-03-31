@@ -1,0 +1,25 @@
+Project: Damian Depuy and Nick Ziemis
+
+The project will consist of 2 raspberry Pi's attached with DHT22 sensors that will run a python script to read data at set intervals and store them locally in a DB file. This data will be uploaded to a server where it can be retrieved and displayed via a web page where a user can login and view the details of each box. The project must be able to handle extra box's with minimal set-up.
+
+So far, I have been able to successfully run and test the DHT22 sensor on my pi. 
+
+A template website that is based off a web program assignment has been constructed and will utilize a different database file.
+
+I have acquired an additional Pi that may be used for testing or dedicated server for the website. 
+
+
+3 week plan.
+
+Data Collection Test:
+-use two Pi's and collect an amount of data locally to each pi
+
+Data Transfer Test:
+-determine how to collect all the data and where to store it
+ -shell.newpaltz.edu is reserved for Damian Depuyy constains *.db     file.
+(crontab DB access at different times to avoid traffic to file)
+
+Web Site:
+- Determine where and how to store site.
+- retrieve data from (shell) that should have data.
+

@@ -1,0 +1,12 @@
+In this file, I (Damian) will create a toDo list to help organize and complete my goals for this project.
+
+toDo: (last update 3/30/2018)
+-create new database
+-set second pi up for data creation
+-insert tests from Pi*2
+
+-create script to auto-run tasks on startup.
+
+(low-priority)
+-fix bootstrap for mobile/small width views
+-update icon

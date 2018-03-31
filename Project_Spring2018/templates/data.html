@@ -1,0 +1,18 @@
+{% extends "template.html" %}
+{% block content %}
+   <h2>Request Granted</h2> 
+   <a href="/logout">Logout</a>
+   <br />
+  <h3>Temperature Sensor Data</h3>
+<table class="table">
+<thead><tr><th>Date/Time</th><th>Celcius</th><th>Fahrenheit</th></tr></thead>
+<tbody>
+{% for item in data%} 
+
+<tr><td>{{item.date_time}}</td><td>{{'%0.2f'| format(item.tempC|float)}}&deg;C</td><td>{{'%0.2f'| format(item.tempF|float)}}&deg;F</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+{% endblock %}

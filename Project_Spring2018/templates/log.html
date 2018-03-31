@@ -1,0 +1,44 @@
+{% extends "template.html" %}
+{% block content %}
+   <h1>Login</h1>
+<p>1. Login with username:password --> admin:admin</p>
+<p>2. Pick max amount to display followed be a date range.</p>
+<p>3. End date dose not include day, but everthing before it.</p>
+   {% if error %}
+     <p class=error><strong>Error:</strong> {{ error }}
+   {% endif %}
+   <form action="" method=post>
+     <dl>
+       <dt>Username:(admin)
+       <dd><input type=text name=username value="{{request.form.username}}">
+       <dt>Password:(admin)
+       <dd><input type=password name=password>
+       <dt>Max Results (1-100):
+       <dd><input type=number name=number min=1 max=100 value="10">
+       <dt>start date:
+       <dd><select name="fromDate">
+    	<option value="03/01/18">3-1-18</option>
+    	<option value="03/02/18">3-2-18</option>
+	<option value="03/03/18">3-3-18</option>
+	<option value="03/04/18">3-4-18</option>
+	<option value="03/05/18">3-5-18</option>
+	<option value="03/06/18">3-6-18</option>
+	<option value="03/07/18">3-7-18</option>
+  	</select>
+       <dt>end date:
+       <dd><select name="toDate">
+    	<option value="03/01/18">3-1-18</option>
+    	<option value="03/02/18">3-2-18</option>
+	<option value="03/03/18">3-3-18</option>
+	<option value="03/04/18">3-4-18</option>
+	<option value="03/05/18">3-5-18</option>
+	<option value="03/06/18">3-6-18</option>
+	<option value="03/07/18">3-7-18</option>
+  	</select>
+     </dl>
+     <p><input type=submit value=Login>
+   </form>
+   {% for message in get_flashed_messages() %}
+      <div class=flash>{{ message }}</div>	   
+   {% endfor%}
+{% endblock %}
