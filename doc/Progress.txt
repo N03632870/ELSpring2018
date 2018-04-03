@@ -8,8 +8,10 @@ A template website that is based off a web program assignment has been construct
 
 I have acquired an additional Pi that may be used for testing or dedicated server for the website. 
 
+My partner Nick is working on getting a working login for his assignment. We will both come up with a solution in the next few days to who will work on what and what hardware and software directions will be needed. 
 
 3 week plan.
+# most of this will be sorted out during the first week while new additions and adjustions will be made if neccisarry.
 
 Data Collection Test:
 -use two Pi's and collect an amount of data locally to each pi
