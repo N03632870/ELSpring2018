@@ -2,7 +2,7 @@ from flask import *
 from functools import wraps
 import sqlite3
 
-DATABASE = '../code/Database/temperature.db'
+DATABASE = '../code/Database/dth22.db'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -31,14 +31,14 @@ def login_required(test):
    return wrap
 
 @app.route('/data', methods=['GET','POST'])
-@login_required
+#@login_required
 
      
 def data():	
       
       g.db = connect_db()
-      cur = g.db.execute('select date_time, tempC, tempF from TempData where date_time between "'+str(fromDate)+'" AND "'+str(toDate)+'" ORDER BY date_time DESC limit '+ str(num))
-      data = [dict(date_time=row[0], tempC=row[1], tempF=row[2]) for row in cur.fetchall()]
+      cur = g.db.execute('select * from data01 where date BETWEEN "'+str(fromTime)+'" AND "'+str(toTime)+'" ORDER BY Date DESC limit '+str(num))
+      data = [dict(Date=row[0], Temp=row[1], Humidity=row[2]) for row in cur.fetchall()]
       g.db.close()
       return render_template('data.html', data=data)
 
@@ -60,20 +60,24 @@ def log():
          global num
          global fromDate
          global toDate
+         global fromTime
+         global toTime
          num = request.form['number']
-         fromDate = request.form['fromDate']
-         toDate = request.form['toDate']
-         session['logged_in'] = True
+         #fromDate = request.form['fromDate']
+         #toDate = request.form['toDate']
+         fromTime = request.form['fromTime']
+         toTime = request.form['toTime']
+         
          return redirect(url_for('data'))
    return render_template('log.html', error=error)
 global num
 num =5
 global fromDate
-fromDate = "03/01/18"
+fromDate = "03/01/2018"
 global toDate
-toDate = "03/05/18"
+toDate = "06/05/2018"
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=100, debug=True)
+   app.run(host='0.0.0.0', port=85, debug=True)
 
 

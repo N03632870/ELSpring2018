@@ -29,6 +29,6 @@ def logTemp():
       except:
          print "Error"
 
-#print readTemp()
-print logTemp()
+print readTemp()
+#print logTemp()
   
