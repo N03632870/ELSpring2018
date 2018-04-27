@@ -1,0 +1,27 @@
+As of 4/25/2018, I have one RPi that acts as a server for a web interface that can query the database with parameters sepcified
+by date and time. 
+
+With only two weeks left, I hope to accomplish the following tasks:
+-Make my wireless phone network setup more rebust. RPi #1 doesn't always connect on its own.
+-Create a chart using either Chart.js or matplotlib instead of just listing data
+-Transfer Flask webserver to PC or another RPi and allow it to query RPi #1, or allow RP1 #1 to insert
+  into DB file on webserver.
+-Set up RPi #2 with DHT22 sensor and accomplish what RPi #1 is doing so webserver can have more than one sensor's data
+-Create template files, instructions on easy setup of RPi #3
+
+
+Successful:
+ -RPi #1 reads data from DHT22 with crontab scheduling activated
+ -RPi #1 contains webserver that connects to specified network (currently my phone) and allows
+   any device on that network to access the web interface
+ 
+Difficulties:
+ -Using the school network was not consistant. Sometimes it would work great, while other times it would not connect.
+ -There's a bug in the login in code that wasn't appearant and has yet to be determined. Log-in is disabled currently.
+ -I was not able to implement as much as I am capable of with this project due to the amount of time spent on hardware issues
+   and network problems. 
+   
+ ** Nick Ziemis was my partner but we were not able to work together for this project **
+ 
+ Everything in this project was created by 
+ (Damian Depuy)
