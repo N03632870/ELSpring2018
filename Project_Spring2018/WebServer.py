@@ -1,6 +1,7 @@
 from flask import *
 from functools import wraps
 import sqlite3
+#import matplotlib.pyplot as plt
 
 DATABASE = '../code/Database/dth22.db'
 
@@ -16,9 +17,6 @@ def connect_db():
 def home():
    return render_template('home.html')
 
-@app.route('/welcome')
-def welcome():
-   return render_template('welcome.html')
 
 def login_required(test):
    @wraps(test)
@@ -54,9 +52,9 @@ def log():
    error = None 
    
    if request.method == 'POST':
-      if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-         error = 'Invalid Credentials. Please try again.'
-      else:
+      #if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+         #error = 'Invalid Credentials. Please try again.'
+      #else:
          global num
          global fromDate
          global toDate
@@ -78,6 +76,6 @@ global toDate
 toDate = "06/05/2018"
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=85, debug=True)
+   app.run(host='0.0.0.0', port=900, debug=True)
 
 
