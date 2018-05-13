@@ -1,7 +1,7 @@
 from flask import *
 from functools import wraps
 import sqlite3
-#import matplotlib.pyplot as plt
+
 
 DATABASE = '../code/Database/dth22.db'
 
@@ -17,6 +17,11 @@ def connect_db():
 def home():
    return render_template('home.html')
 
+@app.route('/graph')
+def chart():
+    labels = ["January","February","March","April","May","June","July","August"]
+    values = [10,9,8,7,6,4,7,8]
+    return render_template('chart.html', values=values, labels=labels)
 
 def login_required(test):
    @wraps(test)
@@ -35,10 +40,11 @@ def login_required(test):
 def data():	
       
       g.db = connect_db()
-      cur = g.db.execute('select * from data01 where date BETWEEN "'+str(fromTime)+'" AND "'+str(toTime)+'" ORDER BY Date DESC limit '+str(num))
+      cur = g.db.execute('select * from "'+str(database)+'"where date BETWEEN "'+str(fromTime)+'" AND "'+str(toTime)+'" ORDER BY Date DESC limit '+str(num))
       data = [dict(Date=row[0], Temp=row[1], Humidity=row[2]) for row in cur.fetchall()]
       g.db.close()
-      return render_template('data.html', data=data)
+      word = database
+      return render_template('data.html', data=data,word=word)
 
 
 @app.route('/logout')
@@ -60,6 +66,8 @@ def log():
          global toDate
          global fromTime
          global toTime
+         global database
+         database = request.form['database']
          num = request.form['number']
          #fromDate = request.form['fromDate']
          #toDate = request.form['toDate']

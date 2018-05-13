@@ -1,5 +1,76 @@
 {% extends "template.html" %}
 {% block content %}
+   <!DOCTYPE html><html lang="en"><head>   <meta charset="utf-8" />   <title>Chart.js </title>      <!-- import plugin script -->   <script src='static/Chart.min.js'></script>   </head><body>
+<h1>Temperature and Humidity {{word}}</h1><!-- bar chart canvas element --><canvas id="line-chart" width="1200" height="450"></canvas>
+<script>
+
+   
+   
+   var barData = {
+  
+   labels : [{% for item in data %}
+                  "{{item.Date}}",
+              {% endfor %}],
+ 
+   datasets : [
+      {          
+            
+            fillColor: "rgba(8,59,155,0.2)",
+            strokeColor: "rgba(8,59,155,1)",
+            pointColor: "rgba(8,59,155,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(8,59,155,1)",
+                       
+         data : [{% for item in data %}
+                      "{{'%0.2f'| format(item.Temp|float)}}",
+                    {% endfor %}]                 
+      },
+      {
+          
+            
+            fillColor: "rgba(155,20,8,.4)",
+            strokeColor: "rgba(155,20,8,1)",
+            pointColor: "rgba(155,20,8,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(155,20,8,1)",
+            bezierCurve : false,
+         data : [{% for item in data %}
+                      {{'%0.2f'| format(item.Humidity|float)}},
+                    {% endfor %}]
+      }
+      
+      ]
+   }
+ 
+   // get bar chart canvas
+   var mychart = document.getElementById("line-chart").getContext("2d");
+   
+   steps = 20
+   max = 120
+   // draw bar chart
+   var myChart = new Chart(mychart).Line(barData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: -20,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true,
+        bezierCurve: false,
+ 
+   });
+ 
+</script>
+</body></html>
+   
+   
+   
+   
+   
+   
    <h2>Request Granted</h2> 
    <a href="/logout">Logout</a>
    <br />
