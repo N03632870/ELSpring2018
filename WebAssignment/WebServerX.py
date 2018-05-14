@@ -1,58 +1,61 @@
-
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import io
+
 
 from flask import Flask, render_template, send_file, make_response, request
 app = Flask(__name__)
 
 import sqlite3
-conn=sqlite3.connect('../dth22.db')
+
+# Retrieve data from database
+
+conn=sqlite3.connect('../code/Database/temperature.db')
 curs=conn.cursor()
-
-# Retrieve LAST data from database
 def getLastData():
-	for row in curs.execute("SELECT * FROM data01 ORDER BY timestamp DESC LIMIT 1"):
+	for row in curs.execute("SELECT * FROM TempData ORDER BY date_time DESC limit 1"):
 		time = str(row[0])
-		temp = row[1]
-		hum = row[2]
+		tempC = row[1]
+		tempF = row[2]
 	#conn.close()
-	return time, temp, hum
-
+	return time, tempC, tempF
 def getHistData (numSamples):
-	curs.execute("SELECT * FROM data01 ORDER BY timestamp DESC LIMIT "+str(numSamples))
+	curs.execute("SELECT * FROM TempData ORDER BY date_time DESC LIMIT "+str(numSamples))
 	data = curs.fetchall()
 	dates = []
-	temps = []
-	hums = []
+	tempCs = []
+	tempFs = []
 	for row in reversed(data):
 		dates.append(row[0])
-		temps.append(row[1])
-		hums.append(row[2])
-	return dates, temps, hums
+		tempCs.append(row[1])
+		tempFs.append(row[2])
+	return dates, tempCs, tempFs
 
+# sets number of rows
 def maxRowsTable():
-	for row in curs.execute("select COUNT(temp) from  DHT_data"):
+	for row in curs.execute("select COUNT(temp) from  TempData"):
 		maxNumberRows=row[0]
 	return maxNumberRows
 
-# define and initialize global variables
+# define and intialize global variables
 global numSamples
 numSamples = maxRowsTable()
-if (numSamples > 101):
+if(numSamples > 101):
 	numSamples = 100
-
-# main route
+# main route 
 @app.route("/")
-def index():
-	time, temp, hum = getLastData()
+def index():	
+	time, tempC, tempF = getData()
 	templateData = {
-	  	'time'	: time,
-		'temp'	: temp,
-      		'hum'	: hum,
-      		'numSamples'	: numSamples
+		'time': time,
+		'tempC': tempC,
+		'tempF': tempF,
+		'numSamples'	: numSamples
 	}
 	return render_template('index.html', **templateData)
+
+
+
 
 @app.route('/', methods=['POST'])
 def my_form_post():
@@ -61,19 +64,19 @@ def my_form_post():
     numMaxSamples = maxRowsTable()
     if (numSamples > numMaxSamples):
         numSamples = (numMaxSamples-1)
-    time, temp, hum = getLastData()
+    time, tempC, tempF = getLastData()
     templateData = {
 	  	'time'	: time,
-      		'temp'	: temp,
-      		'hum'	: hum,
+      		'tempC'	: tempC,
+      		'tempF'	: tempF,
       		'numSamples'	: numSamples
 	}
     return render_template('index.html', **templateData)
 
-@app.route('/plot/temp')
-def plot_temp():
-	times, temps, hums = getHistData(numSamples)
-	ys = temps
+@app.route('/plot/tempC')
+def plot_tempC():
+	times, tempCs, tempFs = getHistData(numSamples)
+	ys = tempCs
 	fig = Figure()
 	axis = fig.add_subplot(1, 1, 1)
 	axis.set_title("Temperature [C]")
@@ -88,13 +91,13 @@ def plot_temp():
 	response.mimetype = 'image/png'
 	return response
 
-@app.route('/plot/hum')
-def plot_hum():
-	times, temps, hums = getHistData(numSamples)
-	ys = hums
+@app.route('/plot/tempF')
+def plot_tempF():
+	times, tempCs, tempFs = getHistData(numSamples)
+	ys = tempFs
 	fig = Figure()
 	axis = fig.add_subplot(1, 1, 1)
-	axis.set_title("Humidity [%]")
+	axis.set_title("Temperature [F]")
 	axis.set_xlabel("Samples")
 	axis.grid(True)
 	xs = range(numSamples)
@@ -107,4 +110,4 @@ def plot_hum():
 	return response
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=800, debug=False)
+   app.run(host='0.0.0.0', port=81, debug=False)

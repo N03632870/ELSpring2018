@@ -22,6 +22,11 @@ Difficulties:
    and network problems. 
    
  ** Nick Ziemis was my partner but we were not able to work together for this project **
- 
+
+*Update 5/13/18*
+More success: 
+ -chart.js used for displaying data works 90%, but there's a bug that does not show the legend data or labels.
+ -pi's comm/unicate and access same database where the server and web page is located.  
+
  Everything in this project was created by 
  (Damian Depuy)

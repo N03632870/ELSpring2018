@@ -3,10 +3,11 @@
    <h1>Login</h1>
 <p>1. Login with username:password --> admin:admin</p>
 <p>2. Pick max amount to display followed be a date range.</p>
-<p>3. End date dose not include day, but everthing before it.</p>
+<p>3. End date does not include day, but everthing before it.</p>
    {% if error %}
      <p class=error><strong>Error:</strong> {{ error }}
    {% endif %}
+   <div class=jumbotron>
    <form action="" method=post>
      <dl>
        <dt>Username:(admin)
@@ -15,18 +16,32 @@
        <dd><input type=password name=password>
        <dt>Max Results (1-200):
        <dd><input type=number name=number min=1 max=200 value="50">
-       <dt>Database[data01,data02]:
-<input type=text name="database" required>
-       <dt>start date:
-<input type=text name="fromTime" required> 
-       
-       <dt>end date:
-<input type=text name="toTime" required>
+       <dt>Zone:
+       <select name="database" required>
+    <option value="data01">BlackBox[01]</option>
+    <option value="data02">WhiteBox[02]</option>
+    <option value="data03" disabled>NewBox[04]</option>
+    <option value="data04" disabled>NewBox[05]</option>
+    <option value="data05" disabled>NewBox[06]</option>
+    
+    
+  </select>
+  
+  
+       <dt>start date:<br>
+<input type=text name="fromTime"  placeholder="01/01/2018 04:00" required><br> 
+    
+       <dt>end date:<br>
+<input type=text name="toTime" placeholder="02/01/2018 16:00"required><br>
  
      </dl>
+     
+     
+     
      <p><input type=submit value=Login>
    </form>
    {% for message in get_flashed_messages() %}
       <div class=flash>{{ message }}</div>	   
    {% endfor%}
+   </div>
 {% endblock %}

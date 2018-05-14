@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from flask import *
 from functools import wraps
 import sqlite3
@@ -16,13 +18,6 @@ def connect_db():
 @app.route('/')
 def home():
    return render_template('home.html')
-
-@app.route('/graph')
-def chart():
-    labels = ["January","February","March","April","May","June","July","August"]
-    values = [10,9,8,7,6,4,7,8]
-    return render_template('chart.html', values=values, labels=labels)
-
 def login_required(test):
    @wraps(test)
    def wrap(*args, **kwargs):
@@ -32,21 +27,16 @@ def login_required(test):
          flash('You need to login first.')
          return redirect(url_for('log'))
    return wrap
-
-@app.route('/data', methods=['GET','POST'])
-#@login_required
-
-     
-def data():	
-      
+   
+@app.route('/data', methods=['GET','POST'])    
+def data():	     
       g.db = connect_db()
-      cur = g.db.execute('select * from "'+str(database)+'"where date BETWEEN "'+str(fromTime)+'" AND "'+str(toTime)+'" ORDER BY Date DESC limit '+str(num))
+      cur = g.db.execute('select * from "'+str(database)+'"where date BETWEEN "'+str(fromTime)+'" AND "'+str(toTime)+'" ORDER BY Date ASC limit '+str(num))
       data = [dict(Date=row[0], Temp=row[1], Humidity=row[2]) for row in cur.fetchall()]
       g.db.close()
       word = database
       return render_template('data.html', data=data,word=word)
-
-
+      
 @app.route('/logout')
 def logout():
    session.pop('logged_in',None)
@@ -58,9 +48,9 @@ def log():
    error = None 
    
    if request.method == 'POST':
-      #if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-         #error = 'Invalid Credentials. Please try again.'
-      #else:
+      if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+         error = 'Invalid Credentials. Please try again.'
+      else:
          global num
          global fromDate
          global toDate
@@ -76,6 +66,7 @@ def log():
          
          return redirect(url_for('data'))
    return render_template('log.html', error=error)
+   
 global num
 num =5
 global fromDate

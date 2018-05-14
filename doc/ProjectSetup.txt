@@ -1,0 +1,20 @@
+Steps to demo project:
+
+1. turn on phone wifi (pi's run only on pre-determined wifi)
+2. plug in clear pi and black pi
+3. run pc and connect to wifi
+4. run putty and login to each pi
+	black pi:(after login)
+	   1. cd ELSpring2018/code/Database/
+	   2. sudo python client.py (MQTT waits for message)
+	   3. cd ELSpring2018/Project_Spring2018
+	   4. sudo python WebServer.py
+	clear pi:(after login)
+	   1. Only have to login, crontab will automate.
+5. Open webbrowser:
+	192.168.43.51:900
+	login: admin:admin
+	
+done.
+
+	

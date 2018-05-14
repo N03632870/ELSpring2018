@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from time import strftime
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
