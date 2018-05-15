@@ -4,16 +4,17 @@ Initial Progress Report of the Project- Progress.txt
 
 This documentation is a quick guide on how the project was created.
 
-Parts used:
-   -1 hdmi cable and mouse/keyboard set for initial installation of OS
-   -2 Debug cables for Raspberry Pi USB to TTL Serial Cables
-   -2 Raspberry Pi 3 eModel B Motherboards each with
-   -2 DHT22/AM2302 Digital Temperature and Humidity Sensors
-   -2 Raspberry Pi case (one black, one clear)
-   -2 400 Points breadboard about 3.2" x 2.1" x 0.3"
-   -8 Jumper wire ribbon cables, male-female ends
-   -4 1/4-watt 200ohm resistors
-   -2 LEDs
+**Parts used:**
+
+..* 1 hdmi cable and mouse/keyboard set for initial installation of OS
+..* 2 Debug cables for Raspberry Pi USB to TTL Serial Cables
+..* 2 Raspberry Pi 3 eModel B Motherboards each with
+..* 2 DHT22/AM2302 Digital Temperature and Humidity Sensors
+..* 2 Raspberry Pi case (one black, one clear)
+..* 2 400 Points breadboard about 3.2" x 2.1" x 0.3"
+..* 8 Jumper wire ribbon cables, male-female ends
+..* 4 1/4-watt 200ohm resistors
+..* 2 LEDs
    
 This documentation assumes reader has some prior knowledge of linux and raspberry pi installation. It is not meant to be a complete tutorial. I will use narration to explain the what I have done up until presentation day.
 
