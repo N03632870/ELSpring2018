@@ -1,5 +1,8 @@
 This is where I will put my programs and code.
 
-readTemperature.py reads the temp sensor attached to the py and adds the data to temperature.db located in the Database folder.
+Temp sensor web assignment:
 
-UDPClient(or Server)_py3.py files work on same machine using two consoles which communicate to each other.
+  readTemperature.py reads the temp sensor attached to the py and adds the data to temperature.db located in the Database folder.
+
+Database folder holds the database created by Web assignment and final project. Initially, the database information should be located within the project folder.
+

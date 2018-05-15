@@ -23,4 +23,7 @@ This project's goal was to create a web server that hosts a website that can dis
 
 The web interface asks for a username, password, max count, zone (what pi data to check), and a date-time range. Once submitted, a graph is displayed using Chart.js with a table that continues that data requested. 
 
-This project was completed by one member, Damian Depuuy
+This project was completed by one member, Damian Depuy
+
+For information on how to construct to project, see the Readme.md file located in the /doc folder.
+
